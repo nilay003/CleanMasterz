@@ -132,6 +132,28 @@ app.post('/saveuserdata', [
     }
 });
 
+
+// Route for displaying user profile
+app.get('/profile', (req, res) => {
+    if (!req.session.userName) {
+        return res.redirect('/');
+    }
+
+    // Fetch user data from database based on req.session.userId or req.session.userName
+    const sql = 'SELECT * FROM users WHERE user_id = ?'; // Adjust SQL query based on your database schema
+    db.query(sql, [req.session.userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching user data:', err);
+            return res.status(500).send('Error fetching user data');
+        }
+        if (results.length !== 1) {
+            return res.status(404).send('User not found');
+        }
+        const user = results[0];
+        res.render('userprofile', { userName: req.session.userName, user });
+    });
+});
+
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {

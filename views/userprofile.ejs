@@ -17,7 +17,7 @@
                 <nav>
                     <ul>
                         <li><a href="/userdashboard">Dashboard</a></li>
-                        <li><a href="#">Profile</a></li>
+                        <li><a href="/profile">Profile</a></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="/logout">Logout</a></li>
                     </ul>
@@ -25,24 +25,16 @@
             </aside>
             <section class="main-content">
                 <header>
-                    <h2>User Profile</h2>
+                    <h2>Welcome, <%= userName %>!</h2>
                 </header>
                 <div class="content">
-                    <div class="profile-info">
-                        <div class="profile-avatar">
-                            <!-- User Avatar -->
-                            <img src="/public/images/avatar.png" alt="User Avatar">
-                        </div>
-                        <div class="profile-details">
-                            <h3><%= userName %></h3>
-                            <!-- Other user details like email, etc. -->
-                            <p>Email: user@example.com</p>
-                            <p>Location: City, Country</p>
-                            <p>Joined: January 1, 2023</p>
-                            <!-- Edit profile button -->
-                            <a href="#" class="edit-profile-btn">Edit Profile</a>
-                        </div>
-                    </div>
+                    <h3>User Profile Details</h3>
+                    <ul>
+                        <li><strong>Name:</strong> <%= user.name %></li>
+                        <li><strong>Email:</strong> <%= user.email %></li>
+                        <!-- Add other user details as needed -->
+                    </ul>
+              
                 </div>
             </section>
         </div>
