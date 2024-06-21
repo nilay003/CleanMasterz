@@ -3,33 +3,33 @@ const { check, validationResult } = require('express-validator');
 const session = require('express-session');
 const path = require('path');
 const crypto = require('crypto');
-const mysql = require('mysql'); 
+const mysql = require('mysql');
+
 const app = express();
 
-// Express Body-parser
+// Middleware
 app.use(express.urlencoded({ extended: true }));
-
-// Set path to public and views folder
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname + '/public'));
 app.use('/public/images/', express.static('./public/images'));
 app.set('view engine', 'ejs');
 
-// Configure express-session middleware
+// Session configuration
 app.use(session({
-    secret: 'your_secret_key_here', // Replace with a random secret key for session management
-    resave: false,
-    saveUninitialized: false
+    secret: 'your_secret_key_here',
+    resave: true,
+    saveUninitialized: false,
+    cookie: { secure: false } 
 }));
-// MySQL Connection Configuration
+
+// MySQL connection
 const db = mysql.createConnection({
-    host: 'localhost', // MySQL server host
-    user: 'root', // MySQL username
-    password: '', // MySQL password
-    database: 'cleanmasterz' // MySQL database name
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'cleanmasterz'
 });
 
-// Connect to MySQL
 db.connect((err) => {
     if (err) {
         console.error('Error connecting to MySQL:', err);
@@ -44,22 +44,19 @@ function hashPassword(password) {
     hash.update(password);
     return hash.digest('hex');
 }
-app.get('/', function (req, res) {
-    res.render('index');
+
+// Routes
+app.get('/', (req, res) => {
+    res.render('index', { errorsLocation: undefined });
 });
 
-app.get('/userdashboard', function (req, res) {
-    res.render('userdashboard');
-});
-
-
-// Handle login form submission
 app.post('/login', [
     check('email', 'Please enter a valid email').isEmail(),
-    check('password', 'Password must be at least 8 characters').isLength({ min: 8 })
+    check('password', 'Invalid Email or Password').isLength({ min: 8 })
 ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+        console.log('Validation errors:', errors.array());
         return res.render('index', { errors: errors.array(), errorsLocation: 'login' });
     }
 
@@ -75,13 +72,19 @@ app.post('/login', [
             }
 
             if (results.length === 1) {
-                // User found, set session
-                req.session.userId = results[0].id;
+                req.session.userId = results[0].user_id;
                 req.session.userName = results[0].name;
-                res.redirect('/userdashboard'); // Redirect to dashboard upon successful login
+                console.log('Login successful:', results[0].name);
+                req.session.save((err) => {
+                    if (err) {
+                        console.error('Session save error:', err);
+                        return res.status(500).send('Error saving session');
+                    }
+                    res.redirect('/userdashboard');
+                });
             } else {
-                // User not found or password incorrect
-                res.render('index', { errors: [{ msg: 'Invalid email or password' }] });
+                console.log('Invalid email or password');
+                res.render('index', { errors: [{ msg: 'Invalid email or password' }], errorsLocation: 'login' });
             }
         });
     } catch (error) {
@@ -90,15 +93,22 @@ app.post('/login', [
     }
 });
 
-// Handle form submission to save user data
+app.get('/userdashboard', (req, res) => {
+    console.log('User dashboard accessed by:', req.session.userName);
+    if (!req.session.userId) {
+        return res.redirect('/');
+    }
+    res.render('userdashboard', { userName: req.session.userName });
+});
+
 app.post('/saveuserdata', [
     check('name', 'Name is required').notEmpty(),
     check('email', 'Please enter valid email address').isEmail(),
     check('password', 'Password must be at least 8 characters').isLength({ min: 8 })
-], function (req, res) {
+], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        // Display Error Messages on the signup form
+        console.log('Validation errors:', errors.array());
         return res.render('index', { errors: errors.array(), errorsLocation: 'signup' });
     }
 
@@ -106,9 +116,7 @@ app.post('/saveuserdata', [
     console.log('Received form data:', { name, email, password });
 
     try {
-        const hashedPassword = hashPassword(password); // Hash password using SHA-256
-    
-        // Insert user data into MySQL
+        const hashedPassword = hashPassword(password);
         const sql = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
         db.query(sql, [name, email, hashedPassword], (err, result) => {
             if (err) {
@@ -116,7 +124,7 @@ app.post('/saveuserdata', [
                 return res.status(500).send('Error inserting user');
             }
             console.log('User registered successfully!');
-            res.redirect('/'); // Redirect to home page or success page
+            res.redirect('/');
         });
     } catch (error) {
         console.error('Error processing registration:', error);
@@ -124,9 +132,17 @@ app.post('/saveuserdata', [
     }
 });
 
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log('Error destroying session:', err);
+            return res.redirect('/userdashboard');
+        }
+        res.redirect('/');
+    });
+});
 
-
-// Execute Website Using Port Number for Localhost
+// Server listening
 const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`Website Executed Successfully....Open Using http://localhost:${PORT}/`);

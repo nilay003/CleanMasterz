@@ -38,7 +38,7 @@ bullets.forEach((bullet) => {
   bullet.addEventListener("click", moveSlider);
 });
 
-// Check if there are validation errors on signup form and stay on signup if errors
+
 document.addEventListener('DOMContentLoaded', () => {
   const signupForm = document.querySelector('.sign-up-form');
   if (signupForm) {

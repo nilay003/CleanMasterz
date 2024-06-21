@@ -394,3 +394,254 @@ main.sign-up-mode .carousel {
     padding: 1rem 2rem 1.5rem;
   }
 }
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #b6cbde;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-box {
+  width: 100%;
+  max-width: 1020px;
+  height: 640px;
+  background-color: #fff;
+  border-radius: 3.3rem;
+  box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+  display: flex;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #151111;
+  color: #fff;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo img {
+  width: 150px;
+}
+
+.logo h4 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  width: 100%;
+}
+
+nav ul li {
+  margin: 1.5rem 0;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #8371fd;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.main-content header {
+  margin-bottom: 2rem;
+}
+
+.main-content header h2 {
+  font-size: 2rem;
+  color: #151111;
+}
+
+.main-content .content {
+  font-size: 1rem;
+  color: #151111;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #b6cbde;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-box {
+  width: 100%;
+  max-width: 1020px;
+  height: 640px;
+  background-color: #fff;
+  border-radius: 3.3rem;
+  box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+  display: flex;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #151111;
+  color: #fff;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo img {
+  width: 150px;
+}
+
+.logo h4 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  width: 100%;
+}
+
+nav ul li {
+  margin: 1.5rem 0;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #8371fd;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.main-content header {
+  margin-bottom: 2rem;
+}
+
+.main-content header h2 {
+  font-size: 2rem;
+  color: #151111;
+}
+
+.main-content .content {
+  font-size: 1rem;
+  color: #151111;
+}
+
+/* Profile specific styling */
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-avatar {
+  margin-right: 2rem;
+}
+
+.profile-avatar img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.profile-details h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #151111;
+}
+
+.profile-details p {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.edit-profile-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #151111;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.edit-profile-btn:hover {
+  background-color: #8371fd;
+}
