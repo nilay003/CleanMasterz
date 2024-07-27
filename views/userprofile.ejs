@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="/script/userprofile.js" defer></script>
 </head>
 <body>
     <main>
@@ -32,9 +33,63 @@
                     <ul>
                         <li><strong>Name:</strong> <%= user.name %></li>
                         <li><strong>Email:</strong> <%= user.email %></li>
-                        <!-- Add other user details as needed -->
                     </ul>
-              
+
+                    <div id="addressSection">
+                        <% if (address) { %>
+                            <h3>User Address</h3>
+                            <ul>
+                                <li><strong>Street Address:</strong> <span id="existing-street"><%= address.street_address %></span></li>
+                                <li><strong>City:</strong> <span id="existing-city"><%= address.city %></span></li>
+                                <li><strong>State:</strong> <span id="existing-state"><%= address.state %></span></li>
+                                <li><strong>Zip Code:</strong> <span id="existing-zip"><%= address.zip_code %></span></li>
+                                <li><strong>Country:</strong> <span id="existing-country"><%= address.country %></span></li>
+                            </ul>
+                            <button id="toggleAddressForm" onclick="toggleEditForm(<%= address.address_id %>)">Edit Address</button>
+                        <% } else { %>
+                            <button id="toggleAddressForm" onclick="toggleAddressForm()">Add Address</button>
+                        <% } %>
+                    </div>
+                    
+                    <form id="addressForm" action="/addaddress" method="POST" style="display: none;">
+                        <div>
+                            <label for="street_address">Street Address</label>
+                            <input type="text" id="street_address" name="street_address" required>
+                        </div>
+                        <div>
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div>
+                            <label for="state">State</label>
+                            <select id="state" name="state" required>
+                                <option value="">Select State/Province</option>
+                                <option value="AB">Alberta</option>
+                                <option value="BC">British Columbia</option>
+                                <option value="MB">Manitoba</option>
+                                <option value="NB">New Brunswick</option>
+                                <option value="NL">Newfoundland and Labrador</option>
+                                <option value="NS">Nova Scotia</option>
+                                <option value="NT">Northwest Territories</option>
+                                <option value="NU">Nunavut</option>
+                                <option value="ON">Ontario</option>
+                                <option value="PE">Prince Edward Island</option>
+                                <option value="QC">Quebec</option>
+                                <option value="SK">Saskatchewan</option>
+                                <option value="YT">Yukon</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="zip_code">Zip Code</label>
+                            <input type="text" id="zip_code" name="zip_code" required>
+                        </div>
+                        <div>
+                            <label for="country">Country</label>
+                            <input type="text" id="country" name="country" required>
+                        </div>
+                        <button type="submit">Add Address</button>
+                    </form>
+                    
                 </div>
             </section>
         </div>

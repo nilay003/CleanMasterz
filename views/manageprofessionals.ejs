@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Professionals</title>
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+    <main>
+        <div class="professionals-box">
+            <header>
+                <h2>Manage Professionals</h2>
+                <button onclick="location.href='/admin'">Back to Dashboard</button>
+            </header>
+            <section class="professional-list">
+                <h3>Available Professionals</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Profession</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% professionals.forEach(professional => { %>
+                            <tr>
+                                <td><%= professional.name %></td>
+                                <td><%= professional.profession %></td>
+                                <td><%= professional.email %></td>
+                                <td>
+                                    <button onclick="editProfessional('<%= professional.professional_id %>', '<%= professional.name %>', '<%= professional.profession %>', '<%= professional.email %>')">Edit</button>
+                                    <form action="/deleteprofessional/<%= professional.professional_id %>" method="post" style="display:inline;">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </section>
+            <section class="add-professional">
+                <h3 id="form-title">Add New Professional</h3>
+                <form id="professional-form" action="/addprofessional" method="post" onsubmit="return validateEmail()">
+                    <input type="hidden" id="professional-id" name="professional_id">
+                    <label for="professional-name">Name:</label>
+                    <input type="text" id="professional-name" name="name" required>
+                    <label for="profession">Profession:</label>
+                    <input type="text" id="profession" name="profession" required>
+                    <label for="email-username">Email:</label>
+                    <div style="display: flex; align-items: center;">
+                        <input type="text" id="email-username" name="email_username" required style="flex: 1;">
+                        <span>@cmp.com</span>
+                    </div>
+                    <input type="hidden" id="email" name="email">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit" id="form-button">Add Professional</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    <script src="/script/manage-professionals.js"></script>
+</body>
+</html>

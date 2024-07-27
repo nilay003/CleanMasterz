@@ -27,11 +27,64 @@
                 <header>
                     <h2>Welcome, <%= userName %>!</h2>
                 </header>
-                <div class="content">
-                    <p>dashboard content</p>
-                </div>
+                <h3>Scheduled Services</h3>
+                <div class="user-action cards">
+                    <% const activeServices = scheduledServices.filter(service => service.status !== 'Cancelled' && service.status !== 'completed'); %>
+                    <% if (activeServices.length > 0) { %>
+                        <% activeServices.forEach(service => { %>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4><%= service.service_name %></h4>
+                                    <p><strong>Scheduled Date:</strong> <%= service.scheduled_date %></p>
+                                    <p><strong>Status:</strong> <%= service.status %></p>
+                                    <% if (service.status === 'Approved' && service.otp) { %>
+                                        <div class="otp-section" id="otp-section-<%= service.schedule_id %>">
+                                            <p><strong>OTP:</strong> <%= service.otp %></p>
+                                        </div>
+                                    <% } %>
+                                    <form action="/reschedule/<%= service.schedule_id %>" method="POST" class="inline-form">
+                                        <input type="datetime-local" name="new_date" class="reschedule-date" style="display:none;" required>
+                                        <button type="button" class="reschedule-btn" onclick="showRescheduleInput(this)">Reschedule</button>
+                                        <button type="submit" class="reschedule-submit" style="display:none;">Submit</button>
+                                    </form>
+                                    <form action="/cancel/<%= service.schedule_id %>" method="POST" class="inline-form">
+                                        <button type="submit">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p>No scheduled services found.</p>
+                    <% } %>
+                
+
+             
+                <form id="schedule-form" action="/schedules" method="POST" onsubmit="return validateServiceSelection()">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Select Service</h4>
+                            <select id="select-service" name="service_id" onchange="updateServiceDetails()">
+                                <option value="">Select a service...</option>
+                                <% services.forEach(service => { %>
+                                    <option value="<%= service.service_id %>" data-price="<%= service.price %>">
+                                        <%= service.service_name %>
+                                    </option>
+                                <% }); %>
+                            </select>
+                            <p id="service-error" class="error-message" style="display:none; color:red;">Please select a service.</p>
+                            <h4>Scheduled Date</h4>
+                            <input type="datetime-local" id="scheduled-date" name="scheduled_date" required>
+                            <h4>Price</h4>
+                            <input type="text" id="service-price" name="price" readonly>
+                            <button type="submit">Schedule Service</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             </section>
         </div>
     </main>
+    <script src="/script/userdashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

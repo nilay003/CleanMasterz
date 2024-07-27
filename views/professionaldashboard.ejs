@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Dashboard</title>
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+    <main>
+        <div class="dashboard-box">
+            <aside class="sidebar">
+                <div class="logo">
+                    <img src="/public/images/logo.png" alt="Logo">
+                    <h4>CMASTER Professional</h4>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Tasks</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <section class="main-content">
+                <header>
+                    <h2>Welcome, <%= professionalName %>!</h2>
+                </header>
+                <div class="content">
+                    <div class="task">
+                        <h3>Your Current Tasks</h3>
+                        <ul id="task-list">
+                            <% if (scheduledServices && scheduledServices.length > 0) { %>
+                                <% scheduledServices.forEach(service => { %>
+                                    <li>
+                                        <strong>User:</strong> <%= service.user_name %><br>
+                                        <strong>Service:</strong> <%= service.service_name %><br>
+                                        <strong>Scheduled Date:</strong> <%= service.scheduled_date %><br>
+                                        <strong>Status:</strong> <%= service.status %><br>
+                                        <% if (service.status === 'Approved') { %>
+                                            <button class="complete-btn" data-schedule-id="<%= service.schedule_id %>">Complete</button>
+                                            <div class="otp-section" id="otp-section-<%= service.schedule_id %>" style="display:none;">
+                                                <input type="text" id="otp-input-<%= service.schedule_id %>" placeholder="Enter OTP">
+                                                <button class="submit-otp-btn" data-schedule-id="<%= service.schedule_id %>">Submit OTP</button>
+                                            </div>
+                                        <% } %>
+                                    </li>
+                                <% }); %>
+                            <% } else { %>
+                                <li>No tasks found.</li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/script/professionaldashboard.js"></script>
+</body>
+</html>

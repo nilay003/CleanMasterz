@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage User Requests</title>
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+    <main>
+        <div class="requests-box">
+            <header>
+                <h2>Manage User Requests</h2>
+                <button onclick="location.href='/admin'">Back to Dashboard</button>
+            </header>
+            <section class="request-list">
+                <h3>User Requests</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Service</th>
+                            <th>Date Requested</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <% for (let i = 0; i < requests.length; i++) { %>
+                            <tr id="request_<%= requests[i].schedule_id %>">
+                                <td><%= requests[i].user_name %></td>
+                                <td><%= requests[i].service_name %></td>
+                                <td><%= requests[i].scheduled_date %></td>
+                                <td><%= requests[i].status %></td>
+                                <td>
+                                    <form action="/admin/approve/<%= requests[i].schedule_id %>" method="POST">
+                                        <button type="submit">Approve</button>
+                                    </form>
+                                    <form action="/admin/reject/<%= requests[i].schedule_id %>" method="POST">
+                                        <button type="submit">Reject</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

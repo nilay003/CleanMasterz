@@ -1,0 +1,430 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #b6cbde;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-box {
+  width: 100%;
+  max-width: 1020px;
+  height: 640px;
+  background-color: #fff;
+  border-radius: 3.3rem;
+  box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+  display: flex;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #151111;
+  color: #fff;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo img {
+  width: 150px;
+}
+
+.logo h4 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  width: 100%;
+}
+
+nav ul li {
+  margin: 1.5rem 0;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #8371fd;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.main-content header {
+  margin-bottom: 2rem;
+}
+
+.main-content header h2 {
+  font-size: 2rem;
+  color: #151111;
+}
+
+.main-content .content {
+  font-size: 1rem;
+  color: #151111;
+}
+
+
+.admin-action {
+  margin-bottom: 1.5rem;
+}
+
+.admin-action h3 {
+  margin-bottom: 0.5rem;
+  color: #151111;
+}
+
+.admin-action button,
+.admin-action input[type="text"],
+.admin-action input[type="email"] {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #151111;
+}
+
+.admin-action button {
+  background-color: #151111;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-action button:hover {
+  background-color: #8371fd;
+}
+
+.services-box {
+  width: 100%;
+  max-width: 1020px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+header h2 {
+  font-size: 2rem;
+  color: #151111;
+}
+
+header button {
+  padding: 0.5rem 1rem;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+header button:hover {
+  background-color: #8371fd;
+}
+
+.service-list {
+  margin-bottom: 2rem;
+}
+
+.service-list h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.service-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.service-list table th,
+.service-list table td {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.service-list table th {
+  background-color: #f4f4f4;
+}
+
+.service-list table td button {
+  padding: 0.25rem 0.5rem;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.service-list table td button:hover {
+  background-color: #8371fd;
+}
+
+.add-service h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-service form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-service form label {
+  margin-bottom: 0.5rem;
+}
+
+.add-service form input,
+.add-service form select {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+}
+
+.add-service form button {
+  padding: 0.5rem 1rem;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-service form button:hover {
+  background-color: #8371fd;
+}
+
+
+
+.professionals-box {
+  width: 100%;
+  max-width: 1020px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+header h2 {
+  font-size: 2rem;
+  color: #151111;
+}
+
+header button {
+  padding: 0.5rem 1rem;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+header button:hover {
+  background-color: #8371fd;
+}
+
+.professional-list {
+  margin-bottom: 2rem;
+}
+
+.professional-list h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.professional-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.professional-list table th,
+.professional-list table td {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.professional-list table th {
+  background-color: #f4f4f4;
+}
+
+.professional-list table td button {
+  padding: 0.25rem 0.5rem;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.professional-list table td button:hover {
+  background-color: #8371fd;
+}
+
+.add-professional h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-professional form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-professional form label {
+  margin-bottom: 0.5rem;
+}
+
+.add-professional form input {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+}
+
+.add-professional form button {
+  padding: 0.5rem 1rem;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-professional form button:hover {
+  background-color: #8371fd;
+}
+
+
+.requests-box {
+  width: 100%;
+  max-width: 1020px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+header h2 {
+  font-size: 2rem;
+  color: #151111;
+}
+
+header button {
+  padding: 0.5rem 1rem;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+header button:hover {
+  background-color: #8371fd;
+}
+
+.request-list {
+  margin-bottom: 2rem;
+}
+
+.request-list h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.request-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.request-list table th,
+.request-list table td {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.request-list table th {
+  background-color: #f4f4f4;
+}
+
+.request-list table td button {
+  padding: 0.25rem 0.5rem;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.request-list table td button:hover {
+  background-color: #8371fd;
+}

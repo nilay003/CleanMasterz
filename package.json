@@ -1,9 +1,10 @@
 {
   "name": "cleanmasterz",
   "version": "1.0.0",
-  "description": "System Development Project ",
+  "description": "System Development Project",
   "main": "index.js",
   "scripts": {
+     "start": "nodemon --verbose index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -17,5 +18,8 @@
     "express-session": "^1.18.0",
     "express-validator": "^7.1.0",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }
